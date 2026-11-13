@@ -1,0 +1,99 @@
+# LandClaim configuration
+# Colors use & codes. Anything that costs money needs Vault + an economy plugin.
+
+prefix: "&8[&aClaims&8] &7"
+disabled-worlds: []
+
+claim:
+  max-claims: 3            # claims each player can own
+  price: 0.0               # cost to create a claim
+  max-chunks: 9            # biggest a single claim can grow (each chunk = 16x16)
+  extra-claims:
+    enabled: false         # let players pay to go above max-claims
+    price: 5000.0          # price per extra claim slot
+    max-extra: 2           # how many extra slots can be bought
+
+expand:
+  enabled: true
+  price-enabled: false
+  price-per-chunk: 1000.0
+  require-adjacent: true   # new chunk must touch the claim
+
+border:
+  range: 24                # only blocks this close to the player are shown
+  update-ticks: 5
+  preview-block: LIME_CONCRETE   # border while choosing a spot / expanding
+  invalid-block: RED_CONCRETE    # border when the spot can't be claimed
+  owned-block: GREEN_CONCRETE    # border of your confirmed claims
+  show-after-claim: true
+
+teleport:
+  enabled: true
+  delay-seconds: 3         # cancelled if the player moves; 0 = instant
+
+rent:
+  enabled: false
+  max-price: 100000.0
+  period-hours: 24
+
+sell:
+  enabled: false
+  max-price: 1000000.0
+  tax-percent: 5.0         # taken from the seller's earnings
+
+tax:
+  enabled: false
+  interval-hours: 24
+  cost-per-chunk: 50.0
+  max-missed: 3            # claim is deleted after this many unpaid taxes
+
+inactive:
+  enabled: false
+  days: 30                 # delete claims whose owner hasn't played for this long
+
+messages:
+  enter-display: TITLE     # TITLE, ACTIONBAR or NONE - shows claim name + owner when entering a claim
+
+# The item players right-click to open the claim menu (no command needed)
+menu-item:
+  enabled: true
+  material: NETHER_STAR
+  name: "&aClaim Menu"
+  slot: 8                  # hotbar slot 0-8
+
+# Permissions a newly trusted player starts with (owner can change in the GUI)
+default-trust:
+  build: false
+  break: false
+  doors: true
+  chests: false
+
+protection:
+  explosions: true
+  fire: true
+  liquid-flow: true
+  mob-griefing: true
+  pistons: true
+  entities: true
+
+# Bedrock form button icons. Use a texture path or a https:// image URL. Empty = no icon.
+icons:
+  claim: textures/ui/color_plus
+  list: textures/ui/icon_map
+  trust: textures/ui/FriendsIcon
+  trust_add: textures/ui/color_plus
+  player: textures/ui/FriendsIcon
+  market: textures/ui/gift_square
+  teleport: textures/ui/icon_map
+  expand: textures/ui/color_plus
+  border: textures/ui/icon_setting
+  ban: textures/ui/lock_color
+  owner: textures/ui/icon_setting
+  rent: textures/ui/gift_square
+  sell: textures/ui/gift_square
+  rename: textures/ui/icon_setting
+  delete: textures/ui/trash_default
+  info: textures/ui/icon_setting
+  yes: textures/ui/check
+  no: textures/ui/cancel
+  back: textures/ui/refresh_light

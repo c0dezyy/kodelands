@@ -1,0 +1,34 @@
+name: LandClaim
+version: '${project.version}'
+main: com.kodeshi.landclaim.LandClaimPlugin
+api-version: '1.21'
+description: Lightweight crossplay land claims (Java + Bedrock via Floodgate)
+softdepend: [Vault, floodgate]
+commands:
+  confirm:
+    description: Confirm the claim / expansion you are previewing
+    usage: /confirm
+  claimcancel:
+    description: Cancel the claim / expansion preview
+    usage: /claimcancel
+  claimmenu:
+    description: Open the claim menu (and get the menu item back)
+    usage: /claimmenu
+  deleteclaim:
+    description: (Admin) Delete a claim by its name
+    usage: /deleteclaim <landname>[@owner]
+  ownerchange:
+    description: (Admin) Give the claim you stand in to another player
+    usage: /ownerchange <username> [landname]
+  claimreload:
+    description: (Admin) Reload the config
+    usage: /claimreload
+permissions:
+  landclaim.use:
+    default: true
+  landclaim.bypass:
+    description: Ignore all claim protection and bans
+    default: op
+  landclaim.admin:
+    description: Delete any claim, change owners, reload config
+    default: op
