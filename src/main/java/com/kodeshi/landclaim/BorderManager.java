@@ -80,6 +80,7 @@ public final class BorderManager {
         }
         p.closeInventory();
         Sess s = get(p);
+        s.world = p.getWorld();
         s.mode = Mode.NEW;
         s.claim = null;
         double cost = pl.claims.newCost(p.getUniqueId());
@@ -90,6 +91,7 @@ public final class BorderManager {
     public void startExpand(Player p, Claim c) {
         p.closeInventory();
         Sess s = get(p);
+        s.world = p.getWorld();
         s.mode = Mode.EXPAND;
         s.claim = c;
         pl.msg(p, "&aWalk next to your claim, the border shows the new size. Right-click your &eClaim Menu &aitem (or type &e/confirm&a) to add the chunk, or cancel when done.");
@@ -169,7 +171,9 @@ public final class BorderManager {
 
     private void update(Player p, Sess s, Material prev, Material bad, Material own, int range) {
         World w = p.getWorld();
-        if (s.world != w) {
+        if (s.world == null) {
+            s.world = w; // first tick of a new session, not a world change
+        } else if (s.world != w) {
             s.sent.clear();
             s.world = w;
             if (s.mode != Mode.NONE) {
