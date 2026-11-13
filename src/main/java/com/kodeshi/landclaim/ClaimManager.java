@@ -187,7 +187,8 @@ public final class ClaimManager {
         Claim o = at(c.world, cx, cz);
         if (o == c) return "This chunk is already part of the claim.";
         if (o != null) return "This land is claimed by " + nameOf(o.owner) + ".";
-        if (c.chunks.size() >= f.getInt("claim.max-chunks", 9)) return "Max claim size reached.";
+        int maxExpand = f.getInt("expand.max-expand", 8);
+        if (maxExpand >= 0 && c.chunks.size() - 1 >= maxExpand) return "Max expansion reached (" + maxExpand + " chunks).";
         if (f.getBoolean("expand.require-adjacent", true) && !c.touches(cx, cz)) return "Must touch your claim.";
         return null;
     }
